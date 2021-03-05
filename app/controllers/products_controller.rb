@@ -1,16 +1,17 @@
 class ProductsController < ApplicationController
-  
-  def index 
-    @products = Product.all
-end
+  def index
+    @cart = cart
+  end
 
-def add 
-@product = Product.find(params[:id])
-cart << @product.id
-end
+  def add
+    cart << product_params
+    redirect_to :products
+  end
 
-	cart << params[:product]
-   	render :index
-	end
-	
+  private
+
+  def product_params
+    params.require(:product)
+  end
+
 end
